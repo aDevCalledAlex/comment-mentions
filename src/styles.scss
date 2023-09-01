@@ -1,1 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "Clarity City";
+
+  // font-style: normal;
+  // font-weight: normal;
+  src: url("./assets/fonts/clarity-city/ClarityCity-Medium.ttf")
+    format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+body {
+  margin: 0;
+  font-family: "Clarity City", sans-serif;
+  font-size: 14px;
+
+  --colors-page-background: #17181a;
+  --colors-level-one-background: #1f2229;
+  --colors-level-two-background: #21262e;
+  --colors-level-two-active-background: #37404d;
+  --colors-level-three-background: #37404d;
+  --colors-level-three-active-background: #424d5c;
+  --colors-level-four-background: #4f5b6e;
+  --colors-shadow-high: #0d0d0d;
+  --colors-shadow-low: #0d0d0d;
+  --colors-border-light: #2b313b;
+  --colors-border-heavy: #404b59;
+  --colors-white-text: #fff;
+  --colors-header-text: #ededf2;
+  --colors-general-text: #e2e2e7;
+  --colors-secondary-text: #b8bbc1;
+  --colors-tertiary-text: #9b9da1;
+  --colors-success-text: #4bcc69;
+  --colors-danger-text: #ff6e66;
+  --colors-warning-text: #e09243;
+  --colors-interactive-text: #64a1ee;
+  --colors-input-background: #17181a;
+  --colors-input-border: #404b59;
+  --colors-input-border-focus: #289e49;
+  --colors-input-shadow-focus: #285031;
+  --colors-minimal-button-active: #37404d;
+  --colors-minimal-button-hover: #2b313b;
+  --colors-dropdown-button-background: #21262e;
+  --colors-dropdown-button-hover: #37404d;
+  --colors-outlined-button-background: #37404d;
+  --colors-outlined-button-hover: #424d5c;
+  --colors-outlined-button-active: #4f5b6e;
+  --colors-alert-danger-background: #5f3331;
+  --colors-alert-warning-background: #563e27;
+  --colors-alert-success-background: #295032;
+  --colors-alert-info-background: #374f6e;
+  --colors-banner-primary: #09182b;
+  --colors-header-secondary-background: #289e49;
+  --colors-list-item-background: #37404d;
+  --colors-list-item-hover: #424d5c;
+  --colors-list-item-success-background: #203b26;
+  --colors-list-item-danger-background: #472a28;
+  --colors-location-nav-background: #2b313b;
+  --colors-scroll-bar: #424d5c;
+  --colors-backdrop: #2b313bd9;
+  --fc-border-color: #404b59;
+  --colors-completed-task-background: #203b26;
+  --colors-image-placeholder-background: #2b313b;
+}
+
+button {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Clarity City", sans-serif;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+button > span {
+  padding-top: 1px;
+}
+
+button:hover {
+  cursor: pointer;
+  filter: alpha(opacity=40);
+  opacity: 0.5;
+}

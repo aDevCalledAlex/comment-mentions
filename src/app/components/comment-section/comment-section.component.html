@@ -1,0 +1,87 @@
+<div id="comment-section">
+  <h2 id="comments-title">Comments</h2>
+  <div id="comments" *ngFor="let comment of state.comments">
+    <div class="comment">
+      <div class="comment-text" [innerHtml]="comment.content"></div>
+      <div class="comment-metadata">
+        <span>
+          {{ external.userLookup[comment.userId] }}
+        </span>
+        <span> • </span>
+        <span>
+          {{ formatDateTime(comment.timestamp) }}
+        </span>
+      </div>
+      <div *ngIf="isAnyMention(comment.mentions)" class="comment-metadata">
+        <span>Mentions </span>
+        <span *ngFor="let userId of comment.mentions.user">
+          <span> • </span>
+          <span>
+            {{ external.userLookup[userId] }}
+          </span>
+        </span>
+        <span *ngFor="let teamId of comment.mentions.team">
+          <span> • </span>
+          <span>
+            {{ external.teamLookup[teamId] }}
+          </span>
+        </span>
+        <span *ngFor="let address of comment.mentions.email">
+          <span> • </span>
+          <span>
+            {{ address }}
+          </span>
+        </span>
+      </div>
+      <div *ngIf="isAnyTag(comment.tags)" class="comment-metadata">
+        <span>Tags </span>
+        <span *ngFor="let tagId of comment.tags">
+          <span> • </span>
+          <span>
+            {{ external.tagLookup[tagId] }}
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+  <form id="new-comment" [formGroup]="state.form">
+    <div
+      id="new-comment-text"
+      formControlName="text"
+      contenteditable="true"
+      aria-label="New comment text box"
+    ></div>
+    <div
+      id="autocomplete-list"
+      *ngIf="state.isTagging && state.autocompleteListPosition !== null"
+      [style.left.px]="state.autocompleteListPosition.x - 12"
+      [style.bottom.px]="state.autocompleteListPosition.y + 160"
+    >
+      <div
+        class="autocomplete-item"
+        *ngFor="let tagable of this.queryTagables(); index as i"
+        (click)="replaceQueryWithTagable(tagable)"
+        (keydown.code.tab)="replaceQueryWithTagable(tagable)"
+        [ngClass]="{ 'has-focus': state.tagableFocusIndex === i }"
+      >
+        <div class="autocomplete-item-icon">
+          <fa-icon [icon]="iconTagable[tagable.type]"></fa-icon>
+        </div>
+        <div class="autocomplete-item-name">{{ getTagableName(tagable) }}</div>
+      </div>
+    </div>
+    <div id="submission">
+      <button
+        id="add-comment-btn"
+        (click)="addComment()"
+        [disabled]="state.isDisabled"
+        type="submit"
+      >
+        <fa-icon [icon]="icon.comment"></fa-icon>
+        <span>/</span>
+        <fa-icon [icon]="icon.camera"></fa-icon>
+        <span>Add Comment</span>
+      </button>
+    </div>
+  </form>
+</div>
